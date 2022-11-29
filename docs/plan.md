@@ -10,26 +10,28 @@ Add Button, Delete Button
 
 Text Box to enter new grocery
 
-
-Front-End:
+## Roles
+### Front-End:
 
 Charles
 
-Back-End:
+### Back-End:
 
 API Endpoints: Get, Add, Delete, Create New List
 
 Allen
 
-Database
+### Database:
 
 Chandramouli
 
-Documentation: 
+### Documentation: 
 
 Everyone
 
-Friday (12/02): 
+## Schedule
+
+### Friday (12/02): 
 
 Working End-Points
 
@@ -37,7 +39,7 @@ Working Database
 
 Front-End Displays Grocery List
 
-Monday/Tuesday: 
+### Monday/Tuesday: 
 
 Create Demo Video
 
