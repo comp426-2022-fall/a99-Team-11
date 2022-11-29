@@ -1,5 +1,5 @@
 # Overall Plan
-Prototype Web Application: Grocery List
+# Prototype Web Application: Grocery List
 Database of available groceries, where user can add or subtract items from a list
 
 Header: Grocery List
