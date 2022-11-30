@@ -15,14 +15,9 @@ import './ListCard.css';
 import { Typography } from '@mui/material';
 
 export default function OutlinedCard() {
-  const [checked, setChecked] = React.useState([0]);
+  const [checked, setChecked] = React.useState([]);
   const [groceries, setGroceries] = React.useState([]);
   const [curr, setCurr] = React.useState('');
-
-  const onAdd = (tmp) => {
-    console.log(tmp);
-    setGroceries(prevState);
-  };
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -43,13 +38,17 @@ export default function OutlinedCard() {
         <CardContent>
           <TextField
             id="outlined-basic"
-            label="Outlined"
+            label="Add Item"
             variant="outlined"
+            value={curr}
             onChange={(newValue) => setCurr(newValue.target.value)}
           />
           <Button
             size="large"
-            onClick={() => setGroceries([...groceries, curr])}
+            onClick={() => {
+              setGroceries([...groceries, curr]);
+              setCurr('');
+            }}
           >
             Add
           </Button>
@@ -61,36 +60,45 @@ export default function OutlinedCard() {
           <List
             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           >
-            {groceries.length == 0
-              ? 'No groceries yet!'
-              : groceries.map((value) => {
-                  const labelId = `checkbox-list-label-${value}`;
+            {groceries.length == 0 ? (
+              <Typography>No Groceries Yet!</Typography>
+            ) : (
+              groceries.map((value) => {
+                const labelId = `checkbox-list-label-${value}`;
 
-                  return (
-                    <ListItem key={value} disablePadding>
-                      <ListItemButton
-                        role={undefined}
-                        onClick={handleToggle(value)}
-                        dense
-                      >
-                        <ListItemIcon>
-                          <Checkbox
-                            edge="start"
-                            checked={checked.indexOf(value) !== -1}
-                            tabIndex={-1}
-                            disableRipple
-                            inputProps={{ 'aria-labelledby': labelId }}
-                          />
-                        </ListItemIcon>
-                        <ListItemText id={labelId} primary={value} />
-                      </ListItemButton>
-                    </ListItem>
-                  );
-                })}
+                return (
+                  <ListItem key={value} disablePadding>
+                    <ListItemButton
+                      role={undefined}
+                      onClick={handleToggle(value)}
+                      dense
+                    >
+                      <ListItemIcon>
+                        <Checkbox
+                          edge="start"
+                          checked={checked.indexOf(value) !== -1}
+                          tabIndex={-1}
+                          disableRipple
+                          inputProps={{ 'aria-labelledby': labelId }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText id={labelId} primary={value} />
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })
+            )}
           </List>
         </CardContent>
         <CardActions>
-          <Button size="small">Delete</Button>
+          <Button
+            size="small"
+            onClick={() => {
+              setGroceries(groceries.filter((g) => !checked.includes(g)));
+            }}
+          >
+            Delete
+          </Button>
         </CardActions>
       </Card>
     </Box>
