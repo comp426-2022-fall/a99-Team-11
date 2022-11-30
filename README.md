@@ -1,13 +1,12 @@
-# a99-Team-11
-# a99 Final Project
+# a99 Final Project Team 11 - Grocery List App
 
 ## Summary 
+For our final project, we will be building a grocery list app which allows users to add or delete items from their grocery list. They will be able to access their list through a database we create, and we will attempt to integrate login for users to save and keep progress of their list.
 
 COMP426 final project template boilerplate.
-All your code and documentation goes here.
-Change this text to be a brief description of your final project.
-Put the name of your project in the header above.
-You will change everything below to be the main technical documentation, as outlined below.
+
+## Installation instructions for grader
+Enter info here
 
 ## First steps
 
