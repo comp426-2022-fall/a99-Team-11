@@ -1,4 +1,10 @@
 # Overall Plan
+<<<<<<< HEAD
+
+## Frontend
+
+Build out UI for users to add or delete items from their grocery list, as well as save progress of their existing list.
+=======
 ## Prototype Web Application: Grocery List
 Database of available groceries, where user can add or subtract items from a list
 
@@ -43,3 +49,4 @@ Front-End Displays Grocery List
 
 Create Demo Video
 
+>>>>>>> main
