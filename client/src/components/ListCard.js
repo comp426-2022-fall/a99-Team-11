@@ -60,7 +60,7 @@ export default function OutlinedCard() {
           <List
             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           >
-            {groceries.length == 0 ? (
+            {groceries.length === 0 ? (
               <Typography>No Groceries Yet!</Typography>
             ) : (
               groceries.map((value) => {
