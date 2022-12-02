@@ -1,6 +1,7 @@
 import minimist from 'minimist';
 import express from 'express';
 import path from 'path';
+import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -12,6 +13,8 @@ const args = minimist(process.argv.slice(2));
 let port = process.env.PORT || 3001;
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(port, () => {
   console.log(`Server listening on ${port}`);
@@ -44,6 +47,14 @@ app.get('/api', (req, res) => {
 
 app.get('/login', (req, res) => {
   res.status(200);
+});
+
+app.get('/groceries', (req, res) => {
+  res.status(200).json({ groceries: groceries });
+});
+
+app.post('/test', (req, res) => {
+  res.status(200).send(req.body.grocery);
 });
 
 app.post('/add', (req, res) => {

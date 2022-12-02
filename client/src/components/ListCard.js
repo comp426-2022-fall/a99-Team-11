@@ -13,11 +13,32 @@ import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import './ListCard.css';
 import { Typography } from '@mui/material';
+import axios from 'axios';
 
 export default function OutlinedCard() {
   const [checked, setChecked] = React.useState([]);
   const [groceries, setGroceries] = React.useState([]);
   const [curr, setCurr] = React.useState('');
+
+  const getUserData = async () => {
+    const response = await fetch('/groceries');
+    const jsonData = await response.json();
+    setGroceries(jsonData.groceries);
+  };
+
+  const addGrocery = async (grocery) => {
+    const data = { grocery: grocery };
+    axios
+      .post('/add', data)
+      .then((response) => setGroceries(response.groceries))
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  React.useEffect(() => {
+    getUserData();
+  }, []);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -46,7 +67,7 @@ export default function OutlinedCard() {
           <Button
             size="large"
             onClick={() => {
-              setGroceries([...groceries, curr]);
+              addGrocery(curr);
               setCurr('');
             }}
           >
