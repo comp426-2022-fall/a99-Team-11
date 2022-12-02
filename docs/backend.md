@@ -12,6 +12,6 @@ Sends a message to test if API is working
 
 Takes the added grocery from the homepage and sends a updated list with added grocery.
 
-## app.post('remove')
+## app.post('/remove')
 
 Takes the removed grocery from the homepage and sends a updated list without removed grocery.
