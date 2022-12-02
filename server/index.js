@@ -29,11 +29,15 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 let groceries = [];
 
 function remove_grocery(arr, grocery) {
-  for (let i = arr.length - 1; i >= 0; i--) {
-    if ((arr[i] = grocery)) {
+  let i = 0;
+  while (i < arr.length) {
+    if (arr[i] === grocery) {
       arr.splice(i, 1);
+    } else {
+      ++i;
     }
   }
+  return arr;
 }
 
 app.get('/', (req, res) => {
