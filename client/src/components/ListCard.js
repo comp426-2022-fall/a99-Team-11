@@ -13,11 +13,45 @@ import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import './ListCard.css';
 import { Typography } from '@mui/material';
+import axios from 'axios';
 
 export default function OutlinedCard() {
   const [checked, setChecked] = React.useState([]);
   const [groceries, setGroceries] = React.useState([]);
   const [curr, setCurr] = React.useState('');
+
+  const getUserData = async () => {
+    const response = await fetch('/groceries');
+    const jsonData = await response.json();
+    setGroceries(jsonData.groceries);
+  };
+
+  const addGrocery = async (grocery) => {
+    const data = { grocery: grocery };
+    const resp = await axios.post('/add', data).catch((err) => {
+      console.error(err);
+    });
+    setGroceries(resp.data.groceries);
+  };
+
+  const removeGrocery = async (grocery) => {
+    const data = { grocery: grocery };
+    const resp = await axios.post('/remove', data).catch((err) => {
+      console.error(err);
+    });
+    setGroceries(resp.data.groceries);
+  };
+
+  React.useEffect(() => {
+    getUserData();
+  }, []);
+
+  const handleRemove = (checked) => {
+    for (const element of checked) {
+      removeGrocery(element);
+    }
+    setChecked([]);
+  };
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -45,8 +79,14 @@ export default function OutlinedCard() {
           />
           <Button
             size="large"
+            variant="contained"
+            color="success"
+            sx={{
+              ml: 3,
+              height: 55,
+            }}
             onClick={() => {
-              setGroceries([...groceries, curr]);
+              addGrocery(curr);
               setCurr('');
             }}
           >
@@ -60,14 +100,14 @@ export default function OutlinedCard() {
           <List
             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           >
-            {groceries.length === 0 ? (
+            {groceries?.length === 0 ? (
               <Typography>No Groceries Yet!</Typography>
             ) : (
-              groceries.map((value) => {
+              groceries.map((value, index) => {
                 const labelId = `checkbox-list-label-${value}`;
 
                 return (
-                  <ListItem key={value} disablePadding>
+                  <ListItem key={index} disablePadding>
                     <ListItemButton
                       role={undefined}
                       onClick={handleToggle(value)}
@@ -93,8 +133,9 @@ export default function OutlinedCard() {
         <CardActions>
           <Button
             size="small"
+            variant="contained"
             onClick={() => {
-              setGroceries(groceries.filter((g) => !checked.includes(g)));
+              handleRemove(checked);
             }}
           >
             Delete
