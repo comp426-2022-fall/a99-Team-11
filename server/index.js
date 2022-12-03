@@ -41,7 +41,7 @@ function remove_grocery(arr, grocery) {
 }
 
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
   res.status(200);
 });
 
