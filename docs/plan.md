@@ -37,13 +37,13 @@ Everyone
 
 ## Schedule
 
-### Friday (12/02): 
 
-Working End-Points
+| Meeting date  | Agenda        |  Meeting notes     |
+| ------------- |:-------------:| -----:|
+| 12/02/2022    | Finalize project and responsibilities |1. Work on End-Points <br/> 2. Work on setting up database <br/> 3. Work on front end |
+|       |     |    |
+|  |     |    |
 
-Working Database
-
-Front-End Displays Grocery List
 
 ### Monday/Tuesday: 
 
