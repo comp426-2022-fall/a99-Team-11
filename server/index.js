@@ -4,7 +4,8 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import {add_item,delete_items,list_items,login} from './db_ops';
+import Database from 'better-sqlite3';
+// import { add_item, delete_items, list_items, login } from './db_ops';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -28,6 +29,29 @@ if (args.port) {
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 let groceries = [];
+
+// Creation of Database
+let db = new Database('./grocery.db');
+
+/* ---------------------------------------------
+Creation of table grocery_list
+Columns :
+id PK and auto increment 
+item not null 
+will return error as table is already created 
+-----------------------------------------------*/
+
+let table =
+  'CREATE TABLE grocery_list (\
+        id INTEGER PRIMARY KEY AUTOINCREMENT ,\
+        item TEXT NOT NULL );';
+
+try {
+  db.exec(table);
+  console.log('Table created');
+} catch (error) {
+  console.error(error.message);
+}
 
 function remove_grocery(arr, grocery) {
   let i = 0;
@@ -55,18 +79,24 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  //  take user_name and passwrod 
-  // call the function 
+  //  take user_name and passwrod
+  // call the function
   //  output=login(user_name,password)
   // if (length(output>1))
   res.status(200);
 });
 
-
 app.get('/groceries', (req, res) => {
-  // The db will return all the items so storing it in a variable to render it 
+  // The db will return all the items so storing it in a variable to render it
   // let list=list_items
-  res.status(200).json({ groceries: groceries });
+  // res.status(200).json({ groceries: groceries });
+  let list_items = `select * from grocery_list`;
+  try {
+    let list = db.prepare(list_items);
+    res.status(200).json({ groceries: list.all() });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 app.post('/test', (req, res) => {
@@ -75,16 +105,32 @@ app.post('/test', (req, res) => {
 
 app.post('/add', (req, res) => {
   const grocery = req.body.grocery;
-//add_item(grocery)
-  groceries.push(grocery);
-  res.status(200).json({ groceries: groceries });
+  //add_item(grocery)
+  // groceries.push(grocery);
+  // res.status(200).json({ groceries: groceries });
+  let add_items_grocery = `INSERT INTO grocery_list (item) values ('${grocery}')`;
+  try {
+    db.exec(add_items_grocery);
+    console.log('Record added successfully');
+    let list = db.prepare(`select * from grocery_list`);
+    res.status(200).json({ groceries: list.all() });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 app.post('/remove', (req, res) => {
   const grocery = req.body.grocery;
-// delete_items(grocery)
-  remove_grocery(groceries, grocery);
-  res.status(200).json({ groceries: groceries });
+  // delete_items(grocery)
+  let delete_items = `Delete from  grocery_list where item = '${grocery}'`;
+  try {
+    db.exec(delete_items);
+    console.log('Item deleted successfully');
+    let list = db.prepare(`select * from grocery_list`);
+    res.status(200).json({ groceries: list.all() });
+  } catch (error) {
+    console.error(error.message);
+  }
 });
 
 // Returns 404 for any undefined endpoints

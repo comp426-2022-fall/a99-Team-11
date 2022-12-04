@@ -110,19 +110,19 @@ export default function OutlinedCard() {
                   <ListItem key={index} disablePadding>
                     <ListItemButton
                       role={undefined}
-                      onClick={handleToggle(value)}
+                      onClick={handleToggle(value['item'])}
                       dense
                     >
                       <ListItemIcon>
                         <Checkbox
                           edge="start"
-                          checked={checked.indexOf(value) !== -1}
+                          checked={checked.indexOf(value['item']) !== -1}
                           tabIndex={-1}
                           disableRipple
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
                       </ListItemIcon>
-                      <ListItemText id={labelId} primary={value} />
+                      <ListItemText id={labelId} primary={value['item']} />
                     </ListItemButton>
                   </ListItem>
                 );
