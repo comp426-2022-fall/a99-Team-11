@@ -4,6 +4,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import {add_item,delete_items,list_items,login} from './db_ops';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -53,7 +54,18 @@ app.get('/login', (req, res) => {
   res.status(200);
 });
 
+app.post('/login', (req, res) => {
+  //  take user_name and passwrod 
+  // call the function 
+  //  output=login(user_name,password)
+  // if (length(output>1))
+  res.status(200);
+});
+
+
 app.get('/groceries', (req, res) => {
+  // The db will return all the items so storing it in a variable to render it 
+  // let list=list_items
   res.status(200).json({ groceries: groceries });
 });
 
@@ -63,12 +75,14 @@ app.post('/test', (req, res) => {
 
 app.post('/add', (req, res) => {
   const grocery = req.body.grocery;
+//add_item(grocery)
   groceries.push(grocery);
   res.status(200).json({ groceries: groceries });
 });
 
 app.post('/remove', (req, res) => {
   const grocery = req.body.grocery;
+// delete_items(grocery)
   remove_grocery(groceries, grocery);
   res.status(200).json({ groceries: groceries });
 });
