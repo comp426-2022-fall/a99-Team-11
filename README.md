@@ -6,7 +6,11 @@ For our final project, we will be building a grocery list app which allows users
 COMP426 final project template boilerplate.
 
 ## Installation instructions for grader
-Enter info here
+1. From base repo, do `npm install`
+2. CD to client (`cd client`) and then npm install in that directory
+3. CD back to base (`cd ..`) and do `npm run`
+4. CD to client (`cd client`) and do `npm run`
+5. Frontend should load locally and you should be able to add/remove groceries on the site.
 
 ## First steps
 
