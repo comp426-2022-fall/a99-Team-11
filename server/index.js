@@ -53,18 +53,6 @@ try {
   console.error(error.message);
 }
 
-function remove_grocery(arr, grocery) {
-  let i = 0;
-  while (i < arr.length) {
-    if (arr[i] === grocery) {
-      arr.splice(i, 1);
-    } else {
-      ++i;
-    }
-  }
-  return arr;
-}
-
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
   res.status(200);
@@ -74,16 +62,11 @@ app.get('/api', (req, res) => {
   res.json({ message: 'Hello from server!' });
 });
 
-app.get('/login', (req, res) => {
-  res.status(200);
-});
-
 app.post('/login', (req, res) => {
-  //  take user_name and passwrod
+  //  take user_name and password
   // call the function
-  //  output=login(user_name,password)
-  // if (length(output>1))
-  res.status(200);
+  output = login(user_name, password);
+  if (length(output > 1)) res.status(200);
 });
 
 app.get('/groceries', (req, res) => {
@@ -106,8 +89,6 @@ app.post('/test', (req, res) => {
 app.post('/add', (req, res) => {
   const grocery = req.body.grocery;
   //add_item(grocery)
-  // groceries.push(grocery);
-  // res.status(200).json({ groceries: groceries });
   let add_items_grocery = `INSERT INTO grocery_list (item) values ('${grocery}')`;
   try {
     db.exec(add_items_grocery);
