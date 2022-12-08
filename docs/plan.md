@@ -14,31 +14,20 @@ Text Box to enter new grocery
 
 ## Roles
 
-### Front-End:
+| Responsibility        | Name           | 
+| ------------- |:-------------:| 
+| Front-End     | Charles | 
+| API Endpoints     | Allen | 
+| Database    | Chandramouli | 
+| Documentation    | Everyone |
 
-Charles
-
-### Back-End:
-
-API Endpoints: Get, Add, Delete, Create New List
-
-Allen
-
-### Database:
-
-Chandramouli
-
-### Documentation:
-
-Everyone
 
 ## Schedule
 
 | Meeting date |                Agenda                 |                                                                         Meeting notes |
 | ------------ | :-----------------------------------: | ------------------------------------------------------------------------------------: |
 | 12/02/2022   | Finalize project and responsibilities | 1. Work on End-Points <br/> 2. Work on setting up database <br/> 3. Work on front end |
-|              |                                       |                                                                                       |
-|              |                                       |                                                                                       |
+                
 
 ### Monday/Tuesday:
 
