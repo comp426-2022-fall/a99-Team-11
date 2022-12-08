@@ -12,6 +12,8 @@ For our final project, we will be building a grocery list app which allows users
 
 ## Team mangement
 
-Database - Chandramouli
-Api Endpoints - Allen
-Frontend and Review management - Charles
+| Ownership       | name        | 
+| ------------- |:-------------:| 
+| Database     | Chandramouli |
+| API endpoints     | Allen      | 
+| Frontend and review management | Charles     |   
