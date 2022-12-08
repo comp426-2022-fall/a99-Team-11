@@ -32,7 +32,7 @@ The file db_ops.js has all the reuseable code to interact with the database:
 
 ### 1. function add_item:
 
-Adds items to the database table grocery_list.
+Adds items to the database table grocery_list. function takes one parameter as item.
 
 ### 2. function list_items:
 
@@ -40,11 +40,11 @@ List all items stored in the database table grocery_list.
 
 ### 3. function delete_items:
 
-Deletes each items stored in the database table grocery_list. 
+Deletes each items stored in the database table grocery_list. function takes one parameter as id.
 
 ### 4. function login:
 
-Looks up user information in user_auth for login. 
+Looks up user information in user_auth for login. function takes two parameters as user_name and password.
 
 
 
