@@ -1,4 +1,4 @@
-# Database 
+# Database  
 
 Our database grocery.db uses SQLite3. 
 
